@@ -76,7 +76,7 @@ var game ={
 
     },
     instructions: function(){
-        $.colorbox({width:"80%", height:"80%", href:'https://brobert48.github.io/starwar-scroll-title/'});
+        $.colorbox({ width:"80%", height:"80%", href:'https://brobert48.github.io/starwar-scroll-title/'});
       },
 
     reset:function(){
