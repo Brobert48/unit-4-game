@@ -3,10 +3,10 @@ var isCharSelected= false;
 var enemiesDefeated=0;
 var game ={
     character:[ 
-        {name:'Sith-Troopers', image:'assets/images/Sith-Troopers.png', HP:'100', BaseAP:'30', CurrentAP:'30', CAP:'20'},
-        {name:'Dark-Jedi', image:'assets/images/Dark-Jedi.png', HP:'120', BaseAP:'25', CurrentAP:'25', CAP:'25'},
-        {name:'Darth-Malak', image:'assets/images/darth-malak.jpg', HP:'140', BaseAP:'15', CurrentAP:'15', CAP:'30'},
-        {name:'Darth-Revan', image:'assets/images/Darth-Revan.jpg', HP:'160', BaseAP:'10', CurrentAP:'10', CAP:'35'},
+        {name:'Sith Troopers', image:'assets/images/Sith-Troopers.png', HP:'100', BaseAP:'30', CurrentAP:'30', CAP:'20'},
+        {name:'Dark Jedi', image:'assets/images/Dark-Jedi.png', HP:'120', BaseAP:'25', CurrentAP:'25', CAP:'25'},
+        {name:'Darth Malak', image:'assets/images/darth-malak.jpg', HP:'140', BaseAP:'15', CurrentAP:'15', CAP:'30'},
+        {name:'Darth Revan', image:'assets/images/Darth-Revan.jpg', HP:'160', BaseAP:'10', CurrentAP:'10', CAP:'35'},
     ],
     
 
@@ -17,14 +17,15 @@ var game ={
             var targetDiv = document.getElementById("charSelarea");
             var newChar = document.createElement("div");
             targetDiv.appendChild(newChar);
-            newChar.setAttribute("id", this.character[i].name)
+            newChar.setAttribute("id", i)
             newChar.setAttribute('class','charContainer charavatar')
+            newChar.setAttribute('data-name', this.character[i].name)
             newChar.setAttribute('data-HP', this.character[i].HP)
             newChar.setAttribute('data-BaseAP', this.character[i].BaseAP)
             newChar.setAttribute('data-CurrentAP', this.character[i].CurrentAP)
             newChar.setAttribute('data-CAP', this.character[i].CAP)
 
-            var targetDiv2 = document.getElementById(this.character[i].name);
+            var targetDiv2 = document.getElementById(i);
             var nameDiv= document.createElement("div");
             targetDiv2.appendChild(nameDiv);
             nameDiv.innerHTML =  this.character[i].name;
@@ -37,7 +38,7 @@ var game ={
 
             var HPDiv = document.createElement("div");
             targetDiv2.appendChild(HPDiv);
-            HPDiv.innerHTML = $('#'+this.character[i].name).attr("data-HP");
+            HPDiv.innerHTML = $('#'+ i).attr("data-HP");
             HPDiv.setAttribute('class','charHP');         
 
             
@@ -115,8 +116,8 @@ $('#attack-btn').on('click', function(){
         $('.attacker .charHP').text(newHP);
         return newHP;})}
      
-    $('#atkinfo').append('You attacked '+ $('.defender').attr('id') + ' for '+ $('.attacker').attr('data-CurrentAP')+ ' damage.');
-    $('#catkinfo').append($('.defender').attr('id')+ ' attacked you back for '+ $('.defender').attr('data-cap') + ' damage.') ;
+    $('#atkinfo').append('You attacked '+ $('.defender').attr('data-name') + ' for '+ $('.attacker').attr('data-CurrentAP')+ ' damage.');
+    $('#catkinfo').append($('.defender').attr('data-name')+ ' attacked you back for '+ $('.defender').attr('data-cap') + ' damage.') ;
 
     $('.attacker').attr('data-CurrentAP',function(i,origValue){
         var newAP = +origValue + +$('.attacker').attr('data-BaseAP');
@@ -127,7 +128,7 @@ $('#attack-btn').on('click', function(){
     if($('.defender').attr('data-HP') < 1) {         
         $('#atkinfo').empty();
         $('#catkinfo').empty();
-        $('#atkinfo').append('You have defeated '+ $('.defender').attr('id') + ', you can choose to fight another enemy.');
+        $('#atkinfo').append('You have defeated '+ $('.defender').attr('data-name') + ', you can choose to fight another enemy.');
         $('#defenderTile').empty();
         activeDefender=false;
         enemiesDefeated++;
@@ -135,7 +136,7 @@ $('#attack-btn').on('click', function(){
     if($('.attacker').attr('data-HP') <1){
         $('#atkinfo').empty();
         $('#catkinfo').empty();
-        $('#atkinfo').append('You have been defeated by '+ $('.defender').attr('id') + ' ...GAME OVER!!!');
+        $('#atkinfo').append('You have been defeated by '+ $('.defender').attr('data-name') + ' ...GAME OVER!!!');
         $('#catkinfo').append("<button onClick='window.location.reload()'>Restart Game</button>");
         }
     if(enemiesDefeated>2){
