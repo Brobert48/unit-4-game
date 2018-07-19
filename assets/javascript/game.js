@@ -3,10 +3,10 @@ var isCharSelected= false;
 var enemiesDefeated=0;
 var game ={
     character:[ 
-        {name:'characterOne', image:'assets/images/starwarsplaceholder.jpg', HP:'110', BaseAP:'35', CurrentAP:'35', CAP:'20'},
-        {name:'characterTwo', image:'assets/images/starwarsplaceholder.jpg', HP:'130', BaseAP:'30', CurrentAP:'30', CAP:'25'},
-        {name:'characterThree', image:'assets/images/starwarsplaceholder.jpg', HP:'150', BaseAP:'25', CurrentAP:'25', CAP:'30'},
-        {name:'characterFour', image:'assets/images/starwarsplaceholder.jpg', HP:'170', BaseAP:'20', CurrentAP:'20', CAP:'35'},
+        {name:'Sith-Troopers', image:'assets/images/Sith-Troopers.png', HP:'100', BaseAP:'30', CurrentAP:'30', CAP:'20'},
+        {name:'Dark-Jedi', image:'assets/images/Dark-Jedi.png', HP:'120', BaseAP:'25', CurrentAP:'25', CAP:'25'},
+        {name:'Darth-Malak', image:'assets/images/darth-malak.jpg', HP:'140', BaseAP:'15', CurrentAP:'15', CAP:'30'},
+        {name:'Darth-Revan', image:'assets/images/Darth-Revan.jpg', HP:'160', BaseAP:'10', CurrentAP:'10', CAP:'35'},
     ],
     
 
