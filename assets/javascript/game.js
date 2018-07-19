@@ -1,11 +1,12 @@
 var activeDefender = false;
 var isCharSelected= false;
+var enemiesDefeated=0;
 var game ={
     character:[ 
-        {name:'characterOne', image:'assets/images/starwarsplaceholder.jpg', HP:'100', BaseAP:'20', CurrentAP:'20', CAP:'20'},
-        {name:'characterTwo', image:'assets/images/starwarsplaceholder.jpg', HP:'120', BaseAP:'25', CurrentAP:'20', CAP:'25'},
-        {name:'characterThree', image:'assets/images/starwarsplaceholder.jpg', HP:'140', BaseAP:'30', CurrentAP:'20', CAP:'30'},
-        {name:'characterFour', image:'assets/images/starwarsplaceholder.jpg', HP:'160', BaseAP:'35', CurrentAP:'20', CAP:'35'},
+        {name:'characterOne', image:'assets/images/starwarsplaceholder.jpg', HP:'110', BaseAP:'35', CurrentAP:'35', CAP:'20'},
+        {name:'characterTwo', image:'assets/images/starwarsplaceholder.jpg', HP:'130', BaseAP:'30', CurrentAP:'30', CAP:'25'},
+        {name:'characterThree', image:'assets/images/starwarsplaceholder.jpg', HP:'150', BaseAP:'25', CurrentAP:'25', CAP:'30'},
+        {name:'characterFour', image:'assets/images/starwarsplaceholder.jpg', HP:'170', BaseAP:'20', CurrentAP:'20', CAP:'35'},
     ],
     
 
@@ -91,7 +92,7 @@ $( "#charSelarea" ).on( "click", ".charavatar", function() {
     .addClass('enemy');
 });
 $( "#enemies" ).on( "click", ".enemy", function() {
-    if(!activeDefender){
+    if(activeDefender===false){
         $(this)
         .removeClass('enemy')
         .addClass('defender')
@@ -99,16 +100,50 @@ $( "#enemies" ).on( "click", ".enemy", function() {
         activeDefender = true;
     }});
 $('#attack-btn').on('click', function(){
+    if($('.attacker').attr('data-HP')>1){
+    if(activeDefender===true){
+        $('#atkinfo').empty();
+        $('#catkinfo').empty();
     $('.defender').attr('data-HP', function(i,origValue){
         var newHP = origValue - $('.attacker').attr('data-CurrentAP');
         $('.defender .charHP').text(newHP);
         return newHP;
     })
+    if($('.defender').attr('data-HP') > 1) {
     $('.attacker').attr('data-HP',function(i,origValue){
-        var AnewHP = origValue - $('.defender').attr('data-cap');
-        $('.attacker .charHP').text(AnewHP);
-        return AnewHP;
-    // subtract defender HP by attacker CurrentAP. Add BaseAP to CurrentAP.
-    // subtract attacker HP by defender CAP.
-})});
+        var newHP = origValue - $('.defender').attr('data-cap');
+        $('.attacker .charHP').text(newHP);
+        return newHP;})}
+     
+    $('#atkinfo').append('You attacked '+ $('.defender').attr('id') + ' for '+ $('.attacker').attr('data-CurrentAP')+ ' damage.');
+    $('#catkinfo').append($('.defender').attr('id')+ ' attacked you back for '+ $('.defender').attr('data-cap') + ' damage.') ;
+
+    $('.attacker').attr('data-CurrentAP',function(i,origValue){
+        var newAP = +origValue + +$('.attacker').attr('data-BaseAP');
+        // $('.attacker').setAttribute(newAP);
+        return newAP;})
+    }
+    
+    if($('.defender').attr('data-HP') < 1) {         
+        $('#atkinfo').empty();
+        $('#catkinfo').empty();
+        $('#atkinfo').append('You have defeated '+ $('.defender').attr('id') + ', you can choose to fight another enemy.');
+        $('#defenderTile').empty();
+        activeDefender=false;
+        enemiesDefeated++;
+        }
+    if($('.attacker').attr('data-HP') <1){
+        $('#atkinfo').empty();
+        $('#catkinfo').empty();
+        $('#atkinfo').append('You have been defeated by '+ $('.defender').attr('id') + ' ...GAME OVER!!!');
+        $('#catkinfo').append("<button onClick='window.location.reload()'>Restart Game</button>");
+        }
+    if(enemiesDefeated>2){
+        $('#atkinfo').empty();
+        $('#catkinfo').empty();
+        $('#atkinfo').append('You WON!!!!! GAME OVER!!!');
+        $('#catkinfo').append("<button onClick='window.location.reload()'>Restart Game</button>");
+    }
+    }
+    });
 
