@@ -75,12 +75,30 @@ var game ={
 
 
     },
+    instructions: function(){
+        $.colorbox({iframe:true, width:"80%", height:"80%", href:'https://brobert48.github.io/starwar-scroll-title/'});
+      },
 
     reset:function(){
         // Do this to restart the game.
+        $('#charSelarea').empty();
+        $('#selectedCharacter').empty();
+        $('#enemies').empty();
+        $('#defenderTile').empty();
+        $('#atkinfo').empty();
+        $('#catkinfo').empty();
+        activeDefender = false;
+        isCharSelected= false;
+        enemiesDefeated=0;
+        game.spawnCharacter();
     },
 };
+// function openColorBox(){
+//     $.colorbox({iframe:true, width:"80%", height:"80%", href:'https://brobert48.github.io/starwar-scroll-title/'});
+//   };
+
 game.spawnCharacter();
+game.instructions();
 
 $( "#charSelarea" ).on( "click", ".charavatar", function() {
     $(this)
@@ -98,6 +116,8 @@ $( "#enemies" ).on( "click", ".enemy", function() {
         .removeClass('enemy')
         .addClass('defender')
         .appendTo('#defenderTile');
+        $('#atkinfo').empty();
+        $('#catkinfo').empty();
         activeDefender = true;
     }});
 $('#attack-btn').on('click', function(){
@@ -137,14 +157,18 @@ $('#attack-btn').on('click', function(){
         $('#atkinfo').empty();
         $('#catkinfo').empty();
         $('#atkinfo').append('You have been defeated by '+ $('.defender').attr('data-name') + ' ...GAME OVER!!!');
-        $('#catkinfo').append("<button onClick='window.location.reload()'>Restart Game</button>");
+        $('#catkinfo').append("<button onClick='game.reset()'>Restart Game</button>");
         }
     if(enemiesDefeated>2){
         $('#atkinfo').empty();
         $('#catkinfo').empty();
         $('#atkinfo').append('You WON!!!!! GAME OVER!!!');
-        $('#catkinfo').append("<button onClick='window.location.reload()'>Restart Game</button>");
+        $('#catkinfo').append("<button onClick='game.reset()'>Restart Game</button>");
     }
     }
     });
+
+function newFunction() {
+    document.onload.openColorBox();
+}
 
