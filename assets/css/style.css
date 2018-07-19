@@ -1,0 +1,58 @@
+body, html{
+    height: 100%;
+}
+#board{
+    padding: 2%;
+}
+.clearfix {
+    overflow: auto;
+  }
+#bg { 
+    background-image: url('../images/Background_img.jpg');
+    height: 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.sectionHead{
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+
+}
+#title{  
+    color: white;
+    font-weight: bolder;
+    font-size: 30px;
+    margin-left: 80%;
+}
+.charContainer{
+    float: left;
+    font-size: 18px;
+    border: solid 2px green; 
+    height: 125px; 
+    width:175px; 
+    background:white;
+    
+}
+.charName{
+    text-align: center;
+}
+.charImage{
+    margin-left:13px;
+    height: 90px; 
+    width:150px;
+}
+.charHP{
+    text-align: center;
+}
+.enemy{
+    background: red;
+    border: black solid 2px;
+    
+}
+.defender{
+    background: black;
+    color: white;
+}

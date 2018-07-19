@@ -4,9 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>Star Wars RPG</title>
 </head>
 <body>
-    
+    <div id="bg">
+    <!-- Div containing board -->
+    <div id="board">
+        <!-- Title -->
+        <div class="sectionHead" id="title">Star Wars RPG!</div>
+        <!-- Character Selection Area -->
+        <div id="charSelarea" class="clearfix"></div>
+        <!-- Selected Character Area -->
+        <div class="sectionHead">Your Character</div>
+        <div id="selectedCharacter" style="height: 150px"></div>
+        <!-- Available Enemies -->
+        <div class="sectionHead">Enemies Available To Attack</div>
+            <div id='enemies' style="height: 150px"></div>
+        <!-- Fight section -->
+        <div class="sectionHead" id="fightArea"><div>Fight Section</div>
+            <button id="attack-btn">Attack</button>
+        </div>
+        <!-- Defender Area -->
+        <div id="defenderArea"> <div class="sectionHead">Defender</div>
+            <div id="defenderTile"></div>
+            <div id="atkinfo"></div>
+        </div>
+
+        <!-- <div style="border: solid 2px green; height: 125px; width:175px; background:white">
+            <div style="text-align: center">Character Name</div>
+            <img>
+            <div style="text-align: center">Character Health</div>
+        </div> -->
+
+
+    </div>
+</div>
 </body>
+<script src="assets/javascript/game.js"></script>
 </html>
