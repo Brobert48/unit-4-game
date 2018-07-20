@@ -103,17 +103,29 @@ game.instructions();
 
 $( "#charSelarea" ).on( "click", ".charavatar", function() {
     $(this)
+    .removeAttr('id')
     .removeClass('charavatar')
     .addClass('attacker')
     .appendTo("#selectedCharacter");
+    var newHP2 = $('.attacker').attr('data-HP');
+    var newAP = $('.attacker').attr('data-CurrentAP');
+    $('.attacker .charStats').text('HP:' + newHP2 + ' AP:' + newAP);
+    
     isCharSelected= true;
     $('.charavatar').appendTo("#enemies")
+    for( var i=0; i< game.character.length ; i++){
+        var newHP = $('#'+i).attr('data-HP');
+        var newCAP = $('#'+i).attr('data-CAP');
+        var targetDiv = $('#'+i+' .charStats');
+        targetDiv.text(' HP:'+ newHP + ' CAP:'+ newCAP)
+
+    }
     // Create for loop to target each .charavatar ID in #enemies 
     // var newHP = $('.charavatar').attr('data-HP')
     // var newCAP = $('.charavatar').attr('data-CAP');
     // $('.charavatar .charStats').text(' HP:'+ newHP + ' CAP:'+ newCAP)
 
-    .removeClass('charavatar')
+    $('.charavatar').removeClass('charavatar')
     .addClass('enemy');
 });
 $( "#enemies" ).on( "click", ".enemy", function() {
@@ -133,10 +145,11 @@ $('#attack-btn').on('click', function(){
         $('#catkinfo').empty();
     $('.defender').attr('data-HP', function(i,origValue){
         var newHP = origValue - $('.attacker').attr('data-CurrentAP');
+        var newHP2 = $('.attacker').attr('data-HP');
         var newCAP = $('.defender').attr('data-CAP');
         var newAP = $('.attacker').attr('data-CurrentAP');
         $('.defender .charStats').text(' HP:'+ newHP + ' CAP:'+ newCAP);
-        $('.attacker .charStats').text('HP:' + newHP + ' AP:' + newAP);
+        $('.attacker .charStats').text('HP:' + newHP2 + ' AP:' + newAP);
         return newHP;
     })
     if($('.defender').attr('data-HP') > 1) {
