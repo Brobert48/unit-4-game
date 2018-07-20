@@ -44,8 +44,9 @@ body, html{
     height: 90px; 
     width:150px;
 }
-.charHP{
+.charStats{
     text-align: center;
+    font-size: 15px;
 }
 .enemy{
     background: red;
