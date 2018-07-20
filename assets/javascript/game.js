@@ -109,7 +109,7 @@ $( "#charSelarea" ).on( "click", ".charavatar", function() {
     .appendTo("#selectedCharacter");
     var newHP2 = $('.attacker').attr('data-HP');
     var newAP = $('.attacker').attr('data-CurrentAP');
-    $('.attacker .charStats').text('HP:' + newHP2 + ' AP:' + newAP);
+    $('.attacker .charStats').text('HP:' + newHP2 + ' Attack Power:' + newAP);
     
     isCharSelected= true;
     $('.charavatar').appendTo("#enemies")
@@ -117,13 +117,10 @@ $( "#charSelarea" ).on( "click", ".charavatar", function() {
         var newHP = $('#'+i).attr('data-HP');
         var newCAP = $('#'+i).attr('data-CAP');
         var targetDiv = $('#'+i+' .charStats');
-        targetDiv.text(' HP:'+ newHP + ' CAP:'+ newCAP)
+        targetDiv.text(' HP:'+ newHP + ' Counter Attack:'+ newCAP)
 
     }
-    // Create for loop to target each .charavatar ID in #enemies 
-    // var newHP = $('.charavatar').attr('data-HP')
-    // var newCAP = $('.charavatar').attr('data-CAP');
-    // $('.charavatar .charStats').text(' HP:'+ newHP + ' CAP:'+ newCAP)
+    
 
     $('.charavatar').removeClass('charavatar')
     .addClass('enemy');
@@ -148,15 +145,15 @@ $('#attack-btn').on('click', function(){
         var newHP2 = $('.attacker').attr('data-HP');
         var newCAP = $('.defender').attr('data-CAP');
         var newAP = $('.attacker').attr('data-CurrentAP');
-        $('.defender .charStats').text(' HP:'+ newHP + ' CAP:'+ newCAP);
-        $('.attacker .charStats').text('HP:' + newHP2 + ' AP:' + newAP);
+        $('.defender .charStats').text(' HP:'+ newHP + ' Counter Attack:'+ newCAP);
+        $('.attacker .charStats').text('HP:' + newHP2 + ' Attack Power:' + newAP);
         return newHP;
     })
     if($('.defender').attr('data-HP') > 1) {
     $('.attacker').attr('data-HP',function(i,origValue){
         var newHP = origValue - $('.defender').attr('data-cap');
         var newAP = $('.attacker').attr('data-CurrentAP');
-        $('.attacker .charStats').text('HP:' + newHP + ' AP:' + newAP);
+        $('.attacker .charStats').text('HP:' + newHP + ' Attack Power:' + newAP);
         return newHP;})}
      
     $('#atkinfo').append('You attacked '+ $('.defender').attr('data-name') + ' for '+ $('.attacker').attr('data-CurrentAP')+ ' damage.');
@@ -165,8 +162,7 @@ $('#attack-btn').on('click', function(){
     $('.attacker').attr('data-CurrentAP',function(i,origValue){
         var newAP = +origValue + +$('.attacker').attr('data-BaseAP');
         var newHP =$('.attacker').attr('data-HP');
-        $('.attacker .charStats').text('HP:' + newHP + ' AP:' + newAP);
-        // $('.attacker').setAttribute(newAP);
+        $('.attacker .charStats').text('HP:' + newHP + ' Attack Power:' + newAP);
         return newAP;})
     }
     
