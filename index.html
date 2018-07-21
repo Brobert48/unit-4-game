@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,36 +11,47 @@
     <script src="https://www.jacklmoore.com/colorbox/jquery.colorbox.js"></script>
     <title>Star Wars RPG</title>
 </head>
+
 <body>
-    
+
     <div id="bg">
-        
-    <!-- Div containing board -->
-    <div id="board">
-        <!-- Title -->
-        <div class="sectionHead" id="title">Star Wars RPG!</div>
-        <!-- Character Selection Area -->
-        <div id="charSelarea" class="clearfix"></div>
-        <!-- Selected Character Area -->
-        <div class="sectionHead">Your Character</div>
-        <div id="selectedCharacter" style="height: 150px"></div>
-        <!-- Available Enemies -->
-        <div class="sectionHead">Enemies Available To Attack</div>
+
+        <!-- Div containing board -->
+        <div id="board">
+            <!-- Title -->
+            <div class="sectionHead" id="title">Star Wars KOTOR RPG!</div>
+            <!-- Character Selection Area -->
+            <div id="charSelarea" class="clearfix"></div>
+
+            <!-- Available Enemies -->
+            <div class="sectionHead">Enemies Available To Attack</div>
             <div id='enemies' style="height: 150px"></div>
-        <!-- Fight section -->
-        <div class="sectionHead" id="fightArea"><div>Fight Section</div>
-            <button id="attack-btn">Attack</button>
-        </div>
-        <!-- Defender Area -->
-        <div id="defenderArea"> <div class="sectionHead">Defender</div>
-            <div id="defenderTile" style="height: 150px"></div>
+            <!-- Fight section -->
+            <div class="sectionHead" id="fightArea">
+                <div>Fight Section</div>
+                <button id="attack-btn">Attack</button>
+            </div>
+            <div id="arena" class="clearfix">
+                <!-- Selected Character Area -->
+                <div id="attackerArea" style="float: left;">
+                    <div class="sectionHead">You</div>
+                    <div id="selectedCharacter"></div>
+                </div>
+                <div id="vsSign" style="float: left;">VS</div>
+                <!-- Defender Area -->
+                <div id="defenderArea">
+                    <div class="sectionHead">Enemy</div>
+                    <div id="defenderTile" style="height: 150px"></div>
+
+                </div>
+
+            </div>
             <div id="atkinfo" class="fightStats"></div>
             <div id="catkinfo" class="fightStats"></div>
-        </div>
-        
 
+        </div>
     </div>
-</div>
 </body>
 <script src="assets/javascript/game.js"></script>
+
 </html>
