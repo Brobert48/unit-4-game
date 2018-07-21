@@ -106,6 +106,7 @@ $("#charSelarea").on("click", ".charavatar", function () {
 function removeClass(){
     $('.defender .overlay').removeClass('damageOverlay');
     $('.attacker .overlay').removeClass('damageOverlay');
+    canClick=true;
 }
 function emptyDiv(){
     $('#defenderTile').empty();
@@ -152,7 +153,7 @@ $('#attack-btn').on('click', function () {
                 return newHP;
             })
             if ($('.defender').attr('data-HP') > 1) {
-                // canClick=false;
+                canClick=false;
                 $('.attacker').attr('data-HP', function (i, origValue) {
                     $('.attacker .overlay').addClass('damageOverlay');
                         setTimeout(removeClass, 1001);
