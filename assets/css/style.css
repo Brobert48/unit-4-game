@@ -225,8 +225,8 @@ button:hover{
         }
         #board{
             padding: 2%;
-            
         }
+        
         .clearfix {
             overflow: auto;
           }
@@ -273,6 +273,12 @@ button:hover{
             height: 75px; 
             width: 125px;
         }
+        img{
+            height:75px;
+            width:125px;
+
+        }
+
         .charStats{
             text-align: center;
             font-size: 15px;
@@ -371,6 +377,11 @@ button:hover{
         margin-left:15px;
         height: 45px; 
         width:75px;
+    }
+    img{
+        height:45px;
+        width:75px;
+
     }
     .charStats{
         text-align: center;
