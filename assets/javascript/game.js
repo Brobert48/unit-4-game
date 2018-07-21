@@ -108,6 +108,11 @@ function removeClass(){
 }
 function emptyDiv(){
     $('#defenderTile').empty();
+    activeDefender = false;
+    
+}
+function emptyDiv2(){
+    $('#selectedCharacter').empty();
     
 }
 $("#enemies").on("click", ".enemy", function () {
@@ -158,7 +163,7 @@ $('#attack-btn').on('click', function () {
                 $('.attacker .charStats').html('Health:' + newHP +"<br>" + 'Attack Power:' + newAP);
                 return newAP;
             })
-        }
+        
 
         if ($('.defender').attr('data-HP') < 1) {
             $('#atkinfo').empty();
@@ -166,12 +171,14 @@ $('#attack-btn').on('click', function () {
             $('#atkinfo').append('You have defeated ' + $('.defender').attr('data-name') + ', you can choose to fight another enemy.');
             $('.defender').addClass('loser');
             setTimeout(emptyDiv, 900);
-            activeDefender = false;
+            
             enemiesDefeated++;
         }
         if ($('.attacker').attr('data-HP') < 1) {
             $('#atkinfo').empty();
             $('#catkinfo').empty();
+            $('.attacker').addClass('loser');
+            setTimeout(emptyDiv2, 900);
             $('#atkinfo').append('You have been defeated by ' + $('.defender').attr('data-name') + ' ...GAME OVER!!!');
             $('#catkinfo').append("<button onClick='game.reset()'>Restart Game</button>");
         }
@@ -182,7 +189,8 @@ $('#attack-btn').on('click', function () {
             $('#atkinfo').append('You WON!!!!!');
             $('#catkinfo').append("<button onClick='game.reset()'>Restart Game</button>");
         }
-    }
+
+    }}
 });
 
 function newFunction() {
