@@ -107,10 +107,12 @@ function removeClass(){
     $('.attacker .overlay').removeClass('damageOverlay');
 }
 function emptyDiv(){
-    $('#defenderTile').empty();
+    $('#defenderTile').empty();}
+
+function canClick(){
     activeDefender = false;
     
-}
+};
 function emptyDiv2(){
     $('#selectedCharacter').empty();
     
@@ -171,6 +173,7 @@ $('#attack-btn').on('click', function () {
             $('#atkinfo').append('You have defeated ' + $('.defender').attr('data-name') + ', you can choose to fight another enemy.');
             $('.defender').addClass('loser');
             setTimeout(emptyDiv, 900);
+            setTimeout(canClick, 1001);
             
             enemiesDefeated++;
         }
