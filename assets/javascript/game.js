@@ -1,6 +1,7 @@
 var activeDefender = false;
 var isCharSelected = false;
 var enemiesDefeated = 0;
+var canClick= false;
 var game = {
     character: [
         { name: 'Sith Troopers', image: 'assets/images/Sith-Troopers.png', HP: '100', BaseAP: '30', CurrentAP: '30', CAP: '20' },
@@ -107,8 +108,10 @@ function removeClass(){
     $('.attacker .overlay').removeClass('damageOverlay');
 }
 function emptyDiv(){
-    $('#defenderTile').empty();}
-
+    $('#defenderTile').empty();
+    canClick=false;
+    activeDefender = false;
+}
 function canClick(){
     activeDefender = false;
     
@@ -126,11 +129,14 @@ $("#enemies").on("click", ".enemy", function () {
         $('#atkinfo').empty();
         $('#catkinfo').empty();
         activeDefender = true;
+        canClick = true;
     }
 });
 $('#attack-btn').on('click', function () {
+    if(canClick===true){
     if ($('.attacker').attr('data-HP') > 1) {
         if (activeDefender === true) {
+            // canClick=false;
             $('.defender .overlay').addClass('damageOverlay');
             setTimeout(removeClass, 1001);
             $('#atkinfo').empty();
@@ -146,9 +152,11 @@ $('#attack-btn').on('click', function () {
                 return newHP;
             })
             if ($('.defender').attr('data-HP') > 1) {
+                // canClick=false;
                 $('.attacker').attr('data-HP', function (i, origValue) {
                     $('.attacker .overlay').addClass('damageOverlay');
                         setTimeout(removeClass, 1001);
+        
                     var newHP = origValue - $('.defender').attr('data-cap');
                     var newAP = $('.attacker').attr('data-CurrentAP');
                     $('.attacker .charStats').html('Health:' + newHP +"<br>" + 'Attack Power:' + newAP);
@@ -169,15 +177,18 @@ $('#attack-btn').on('click', function () {
 
         if ($('.defender').attr('data-HP') < 1) {
             $('#atkinfo').empty();
+            canClick=false;
             $('#catkinfo').empty();
             $('#atkinfo').append('You have defeated ' + $('.defender').attr('data-name') + ', you can choose to fight another enemy.');
             $('.defender').addClass('loser');
             setTimeout(emptyDiv, 900);
-            setTimeout(canClick, 1001);
+            setTimeout(canClick, 1100);
+            
             
             enemiesDefeated++;
         }
         if ($('.attacker').attr('data-HP') < 1) {
+            canClick=false;
             $('#atkinfo').empty();
             $('#catkinfo').empty();
             $('.attacker').addClass('loser');
@@ -186,6 +197,7 @@ $('#attack-btn').on('click', function () {
             $('#catkinfo').append("<button onClick='game.reset()'>Restart Game</button>");
         }
         if (enemiesDefeated === game.character.length - 1) {
+            canClick=false;
             $('#atkinfo').empty();
             $('#catkinfo').empty();
             $('.attacker').addClass('winner');
@@ -194,7 +206,7 @@ $('#attack-btn').on('click', function () {
         }
 
     }}
-});
+}});
 
 function newFunction() {
     document.onload.openColorBox();
